@@ -25,12 +25,17 @@ RAW  →  STAGING  →  ANALYTICS
 - `stg_patient_visits.sql` → Cleans column names, fixes missing values, standardizes categories.
 
 ### Dimensions
-- `dim_patients.sql` → Unique patient details (age group, gender, race).  
-- `dim_diagnosis.sql` → Maps ICD-9 codes into 10 broad categories.  
-- `dim_admission.sql` → Admission & discharge details mapped from codes.  
+- `dim_patients.sql` → Patient demographics (age, gender, race).
+- `dim_diagnosis.sql` → Maps ICD-9 codes into 10 broad categories.
+- `dim_admission.sql` → Admission type (emergency, elective, etc.).
+- `dim_admission_source.sql` → Admission source (referral, ER, transfer).
+- `dim_discharge.sql` → Discharge disposition (home, transfer, expired, etc.).
+- `dim_medical_specialty.sql` → Specialty of treating/admitting physician.
+- `dim_payer.sql` → Insurance/payer categories.
 
-### Fact
-- `fact_visits.sql` → Central fact table combining encounters, patient demographics, diagnoses, admission type, and the `readmitted_flag`.
+### Facts
+- `fact_visits.sql` → Central encounter-level fact table with readmission flag.
+- `fact_medications.sql` → Medication-level fact table, capturing prescriptions and changes.
 
 ---
 
@@ -38,7 +43,7 @@ RAW  →  STAGING  →  ANALYTICS
 
 The **fact_visits** model is the central hub of this star schema, pulling from staging and multiple dimensions.
 
-📸 *Screenshot included below  
+📸 
 
 ![Fact Visits Lineage](images/factvisits_lg.PNG)
 
