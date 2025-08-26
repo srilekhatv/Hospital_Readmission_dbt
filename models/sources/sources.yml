@@ -1,0 +1,7 @@
+version: 2
+sources:
+  - name: hospital
+    database: HOSPITAL_DB
+    schema: RAW
+    tables:
+      - name: PATIENT_VISITS

@@ -1,0 +1,14 @@
+name: hospital_readmission_dbt
+version: "1.0"
+config-version: 2
+
+models:
+  hospital_readmission_dbt:
+    +materialized: table
+
+    staging:
+      +schema: STAGING
+    marts:
+      +schema: ANALYTICS
+tests:
+  +severity: warn

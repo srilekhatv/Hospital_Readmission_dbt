@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_patient_visits
+    description: "Staging table for hospital encounters; one row per visit."
+    columns:
+      - name: encounter_id
+        description: "Primary key for each hospital visit"
+        tests:
+          - not_null
+          - unique
+      - name: readmitted_flag
+        description: "Binary target flag (1 = readmitted <30 days, 0 = otherwise)"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]
